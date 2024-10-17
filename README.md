@@ -11,7 +11,9 @@
 ---
 
 ## 1. API 명세서
+---
 
+## 1. API 명세서
 ### 일정
 | 기능         | Method | URL                 | Request                   | Response   | Return                       |
 |------------|--------|---------------------|---------------------------|------------|------------------------------|
@@ -28,3 +30,15 @@
 | 전체 댓글 조회  | GET    | /api/schedules/{scheduleId}/comments      | PathVariable                            | 모든 댓글 정보  | List<CommentResponse> |
 | 선택한 댓글 수정 | PUT    | /api/schedules/{scheduleId}/comments/{id} | PathVariable, PathVariable, RequestBody | 수정된 댓글 정보 | CommentResponse       |
 | 선택한 댓글 삭제 | DELETE | /api/schedules/{scheduleId}/comments/{id} | PathVariable, PathVariable              | -         | -                     |
+
+### 유저
+| 기능           | Method | URL                 | Request                   | Response  | Return       |
+|--------------|--------|---------------------|---------------------------|-----------|--------------|
+| 유저 회원가입      | POST   | /api/users/signup   | RequestBody               | 가입된 유저 정보 | UserResponse |
+| 선택한 유저 정보 조회 | GET    | /api/users/{userId} | PathVariable              | 선택한 유저 정보 | UserResponse |
+| 선택한 유저 정보 수정 | PUT    | /api/users/{userId} | PathVariable, RequestBody | 선택한 유저 정보 | UserResponse |
+| 선택한 유저 삭제    | DELETE | /api/users/{userId} | PathVariable              | -         | -            |
+---
+
+## 2. ERD
+![ERD1](/img/ERD1.png)
