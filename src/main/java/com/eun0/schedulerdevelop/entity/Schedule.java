@@ -37,8 +37,7 @@ public class Schedule extends Timestamped {
     private List<Comment> commentList = new ArrayList<>();
 
 
-    public void update(String writer, String title, String content) {
-        this.writer = writer;
+    public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }

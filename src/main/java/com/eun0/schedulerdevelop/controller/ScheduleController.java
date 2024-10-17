@@ -1,8 +1,9 @@
 package com.eun0.schedulerdevelop.controller;
 
+import com.eun0.schedulerdevelop.dto.schedule.ScheduleCreateRequest;
 import com.eun0.schedulerdevelop.dto.schedule.SchedulePagingResponse;
-import com.eun0.schedulerdevelop.dto.schedule.ScheduleRequest;
 import com.eun0.schedulerdevelop.dto.schedule.ScheduleResponse;
+import com.eun0.schedulerdevelop.dto.schedule.ScheduleUpdateRequest;
 import com.eun0.schedulerdevelop.service.ScheduleService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ public class ScheduleController {
 
     // CREATE
     @PostMapping("")
-    public ScheduleResponse createSchedule(@RequestBody @Valid ScheduleRequest requestDto) {
+    public ScheduleResponse createSchedule(@RequestBody @Valid ScheduleCreateRequest requestDto) {
         return scheduleService.createSchedule(requestDto);
     }
 
@@ -40,7 +41,7 @@ public class ScheduleController {
 
     // UPDATE
     @PutMapping("/{id}")
-    public ScheduleResponse updateSchedule(@PathVariable("id") Long id, @RequestBody @Valid ScheduleRequest requestDto) {
+    public ScheduleResponse updateSchedule(@PathVariable("id") Long id, @RequestBody @Valid ScheduleUpdateRequest requestDto) {
         return scheduleService.updateSchedule(id, requestDto);
     }
 

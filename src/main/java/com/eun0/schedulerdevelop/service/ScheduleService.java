@@ -1,8 +1,9 @@
 package com.eun0.schedulerdevelop.service;
 
+import com.eun0.schedulerdevelop.dto.schedule.ScheduleCreateRequest;
 import com.eun0.schedulerdevelop.dto.schedule.SchedulePagingResponse;
-import com.eun0.schedulerdevelop.dto.schedule.ScheduleRequest;
 import com.eun0.schedulerdevelop.dto.schedule.ScheduleResponse;
+import com.eun0.schedulerdevelop.dto.schedule.ScheduleUpdateRequest;
 import com.eun0.schedulerdevelop.entity.Schedule;
 import com.eun0.schedulerdevelop.repository.ScheduleRepository;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ public class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
-    public ScheduleResponse createSchedule(ScheduleRequest requestDto) {
+    public ScheduleResponse createSchedule(ScheduleCreateRequest requestDto) {
         // RequestDTO -> Entity
         Schedule schedule = requestDto.toEntity();
 
@@ -45,12 +46,12 @@ public class ScheduleService {
     }
 
     @Transactional
-    public ScheduleResponse updateSchedule(Long id, ScheduleRequest requestDto) {
+    public ScheduleResponse updateSchedule(Long id, ScheduleUpdateRequest requestDto) {
         // 해당 일정이 DB에 존재하는지 확인
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 스케줄이 DB에 존재하지 않습니다."));
 
         // RequestDTO -> Entity
-        schedule.update(requestDto.getWriter(), requestDto.getTitle(), requestDto.getContent());
+        schedule.update(requestDto.getTitle(), requestDto.getContent());
 
         // Entity -> ResponseDTO
         return ScheduleResponse.from(schedule);
