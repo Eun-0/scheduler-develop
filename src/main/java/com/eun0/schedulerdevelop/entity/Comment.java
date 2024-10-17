@@ -29,6 +29,10 @@ public class Comment extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public void update(String content) {
         this.content = content;

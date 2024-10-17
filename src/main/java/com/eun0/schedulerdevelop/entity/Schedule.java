@@ -36,6 +36,9 @@ public class Schedule extends Timestamped {
     @OneToMany(mappedBy = "schedule", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Comment> commentList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "schedule")
+    private List<ScheduleManager> scheduleManagers =new ArrayList<>();
+
 
     public void update(String title, String content) {
         this.title = title;
