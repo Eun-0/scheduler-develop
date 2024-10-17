@@ -20,6 +20,7 @@ public class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
+    @Transactional
     public ScheduleResponse createSchedule(ScheduleCreateRequest requestDto) {
         // RequestDTO -> Entity
         Schedule schedule = requestDto.toEntity();
@@ -31,6 +32,7 @@ public class ScheduleService {
         return ScheduleResponse.from(savedSchedule);
     }
 
+    @Transactional
     public ScheduleResponse readScheduleById(Long id) {
         // 해당 일정이 DB에 존재하는지 확인
         Schedule readSchedule = scheduleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 일정이 DB에 존재하지 않습니다."));
@@ -39,6 +41,7 @@ public class ScheduleService {
         return ScheduleResponse.from(readSchedule);
     }
 
+    @Transactional
     public Page<SchedulePagingResponse> readSchedulesAsPageSize(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Schedule> schedules = scheduleRepository.findAllByOrderByModifiedAtDesc(pageable);
@@ -57,6 +60,7 @@ public class ScheduleService {
         return ScheduleResponse.from(schedule);
     }
 
+    @Transactional
     public void deleteSchedule(Long id) {
         // 해당 일정이 DB에 존재하는지 확인
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 스케줄이 DB에 존재하지 않습니다."));

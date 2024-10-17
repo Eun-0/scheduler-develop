@@ -16,6 +16,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public UserResponse signup(SignupRequest requestDto) {
         // RequestDTO -> Entity
         User user = requestDto.toEntity();
@@ -27,6 +28,7 @@ public class UserService {
         return UserResponse.from(savedUser);
     }
 
+    @Transactional
     public UserResponse findUserById(Long id) {
         // 해당 유저가 DB에 존재하는지 확인
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 DB에 존재하지 않습니다."));
@@ -47,6 +49,7 @@ public class UserService {
         return UserResponse.from(user);
     }
 
+    @Transactional
     public void deleteUser(Long id) {
         // 해당 유저가 DB에 존재하는지 확인
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 DB에 존재하지 않습니다."));

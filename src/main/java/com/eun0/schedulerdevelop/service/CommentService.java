@@ -18,6 +18,7 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
+    @Transactional
     public CommentResponse createComment(CommentCreateRequest requestDto) {
         // RequestDTO -> Entity
         Comment comment = requestDto.toEntity();
@@ -29,6 +30,7 @@ public class CommentService {
         return CommentResponse.from(savedComment);
     }
 
+    @Transactional
     public List<CommentResponse> readAllComments() {
         return commentRepository.findAll().stream().map(CommentResponse::from).toList();
     }
@@ -45,6 +47,7 @@ public class CommentService {
         return CommentResponse.from(comment);
     }
 
+    @Transactional
     public void deleteComment(Long id) {
         // 해당 댓글이 DB에 존재하는지 확인
         Comment comment = commentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 댓글이 DB에 존재하지 않습니다."));
