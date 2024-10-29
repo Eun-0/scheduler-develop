@@ -1,9 +1,11 @@
 package com.eun0.schedulerdevelop.dto.schedule;
 
 import com.eun0.schedulerdevelop.entity.Schedule;
+import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
 public class ScheduleResponse {
     private Long id;
     private String writer;
@@ -12,19 +14,10 @@ public class ScheduleResponse {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
-    public ScheduleResponse(Long id, String writer, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        this.id = id;
-        this.writer = writer;
-        this.title = title;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
-
     public static ScheduleResponse from(Schedule schedule) {
         return new ScheduleResponse(
                 schedule.getId(),
-                schedule.getWriter(),
+                schedule.getUser().getUsername(),
                 schedule.getTitle(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),
