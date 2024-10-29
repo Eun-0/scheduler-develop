@@ -5,18 +5,16 @@ import com.eun0.schedulerdevelop.dto.comment.CommentResponse;
 import com.eun0.schedulerdevelop.dto.comment.CommentUpdateRequest;
 import com.eun0.schedulerdevelop.entity.Comment;
 import com.eun0.schedulerdevelop.repository.CommentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CommentService {
     CommentRepository commentRepository;
-
-    public CommentService(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
 
     @Transactional
     public CommentResponse createComment(CommentCreateRequest requestDto) {
