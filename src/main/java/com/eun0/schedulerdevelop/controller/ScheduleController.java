@@ -25,9 +25,9 @@ public class ScheduleController {
     }
 
     // READ
-    @GetMapping("/{id}")
-    public ScheduleResponse readScheduleById(@PathVariable("id") Long id) {
-        return scheduleService.readScheduleById(id);
+    @GetMapping("/{scheduleId}")
+    public ScheduleResponse readScheduleById(@PathVariable Long scheduleId) {
+        return scheduleService.readScheduleById(scheduleId);
     }
 
     // READ AS PAGE SIZE
@@ -40,14 +40,14 @@ public class ScheduleController {
     }
 
     // UPDATE
-    @PutMapping("/{id}")
-    public ScheduleResponse updateSchedule(@PathVariable("id") Long id, @RequestBody @Valid ScheduleUpdateRequest requestDto) {
-        return scheduleService.updateSchedule(id, requestDto);
+    @PutMapping("/{scheduleId}")
+    public ScheduleResponse updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleUpdateRequest requestDto) {
+        return scheduleService.updateSchedule(scheduleId, requestDto);
     }
 
     // DELETE
-    @DeleteMapping("/{id}")
-    public void deleteSchedule(@PathVariable("id") Long id) {
-        scheduleService.deleteSchedule(id);
+    @DeleteMapping("/{scheduleId}")
+    public void deleteSchedule(@PathVariable Long scheduleId) {
+        scheduleService.deleteSchedule(scheduleId);
     }
 }
