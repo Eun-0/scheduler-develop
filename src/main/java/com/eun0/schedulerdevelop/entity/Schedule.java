@@ -37,7 +37,7 @@ public class Schedule extends Timestamped {
     private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "schedule")
-    private List<ScheduleManager> scheduleManagers =new ArrayList<>();
+    private List<ScheduleManager> scheduleManagers = new ArrayList<>();
 
 
     public void update(String title, String content) {
