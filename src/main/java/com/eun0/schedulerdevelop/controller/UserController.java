@@ -16,25 +16,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    // CREATE
     @PostMapping("/signup")
     public UserResponse signup(@RequestBody @Valid SignupRequest requestDto) {
         return userService.signup(requestDto);
     }
 
-    // READ
     @GetMapping("/{userId}")
     public UserResponse findUserById(@PathVariable("userId") Long id) {
         return userService.findUserById(id);
     }
 
-    // UPDATE
     @PutMapping("/{userId}")
     public UserResponse updateUser(@PathVariable("userId") Long id, @RequestBody @Valid UserUpdateRequest requestDto) {
         return userService.updateUser(id, requestDto);
     }
 
-    // DELETE
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable("userId") Long id) {
         userService.deleteUser(id);
