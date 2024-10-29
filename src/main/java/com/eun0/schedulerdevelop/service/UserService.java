@@ -5,16 +5,14 @@ import com.eun0.schedulerdevelop.dto.user.UserResponse;
 import com.eun0.schedulerdevelop.dto.user.UserUpdateRequest;
 import com.eun0.schedulerdevelop.entity.User;
 import com.eun0.schedulerdevelop.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Transactional
     public UserResponse signup(SignupRequest requestDto) {
