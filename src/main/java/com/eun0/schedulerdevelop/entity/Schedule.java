@@ -18,20 +18,20 @@ public class Schedule extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto-increment
     private Long id;
 
-    @Column(nullable = false, length = 5)
-    private String writer;
-
     @Column(nullable = false, length = 15)
     private String title;
 
     @Column(nullable = false, length = 200)
     private String content;
 
-    public Schedule(String writer, String title, String content) {
-        this.writer = writer;
+    public Schedule(String title, String content) {
         this.title = title;
         this.content = content;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "schedule", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Comment> commentList = new ArrayList<>();

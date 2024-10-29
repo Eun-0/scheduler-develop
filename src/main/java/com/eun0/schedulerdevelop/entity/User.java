@@ -30,10 +30,13 @@ public class User extends Timestamped {
     }
 
     @OneToMany(mappedBy = "user")
-    private List<ScheduleManager> scheduleManagers =new ArrayList<>();
+    private List<Schedule> schedules = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Comment> commentList =new ArrayList<>();
+    private List<ScheduleManager> scheduleManagers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> commentList = new ArrayList<>();
 
     public void update(String username, String email) {
         this.username = username;
