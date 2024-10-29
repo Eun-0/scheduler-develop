@@ -11,17 +11,17 @@ import java.util.List;
 @Entity // JPA가 관리할 수 있는 Entity 클래스 지정
 @Getter
 @Setter
-@Table(name = "user")   // 매핑할 테이블의 이름을 지정
+@Table(name = "users")
 @NoArgsConstructor
 public class User extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto-increment
     private Long id;
 
-    @Column(name = "username", nullable = false, length = 5)
+    @Column(nullable = false, length = 5)
     private String username;
 
-    @Column(name = "email", nullable = false)
+    @Column(nullable = false)
     private String email;
 
     public User(String username, String email) {

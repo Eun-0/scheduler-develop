@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "schedule_manager")
+@Table(name = "schedule_managers")
 public class ScheduleManager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

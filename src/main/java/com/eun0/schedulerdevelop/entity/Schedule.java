@@ -11,20 +11,20 @@ import java.util.List;
 @Entity // JPA가 관리할 수 있는 Entity 클래스 지정
 @Getter
 @Setter
-@Table(name = "schedule")   // 매핑할 테이블의 이름을 지정
+@Table(name = "schedules")   // 매핑할 테이블의 이름을 지정
 @NoArgsConstructor
 public class Schedule extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto-increment
     private Long id;
 
-    @Column(name = "writer", nullable = false, length = 5)
+    @Column(nullable = false, length = 5)
     private String writer;
 
-    @Column(name = "title", nullable = false, length = 15)
+    @Column(nullable = false, length = 15)
     private String title;
 
-    @Column(name = "content", nullable = false, length = 200)
+    @Column(nullable = false, length = 200)
     private String content;
 
     public Schedule(String writer, String title, String content) {
