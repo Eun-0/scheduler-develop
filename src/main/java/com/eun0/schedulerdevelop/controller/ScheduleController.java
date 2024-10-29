@@ -1,9 +1,8 @@
 package com.eun0.schedulerdevelop.controller;
 
-import com.eun0.schedulerdevelop.dto.schedule.ScheduleCreateRequest;
 import com.eun0.schedulerdevelop.dto.schedule.SchedulePagingResponse;
+import com.eun0.schedulerdevelop.dto.schedule.ScheduleRequest;
 import com.eun0.schedulerdevelop.dto.schedule.ScheduleResponse;
-import com.eun0.schedulerdevelop.dto.schedule.ScheduleUpdateRequest;
 import com.eun0.schedulerdevelop.service.ScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +16,13 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping("")
-    public ScheduleResponse createSchedule(@RequestBody @Valid ScheduleCreateRequest requestDto) {
-        return scheduleService.createSchedule(requestDto);
+    public ScheduleResponse createSchedule(@RequestBody @Valid ScheduleRequest requestDto, Long userId) {
+        return scheduleService.createSchedule(requestDto, userId);
     }
 
     @GetMapping("/{scheduleId}")
-    public ScheduleResponse readScheduleById(@PathVariable Long scheduleId) {
-        return scheduleService.readScheduleById(scheduleId);
+    public ScheduleResponse readSchedule(@PathVariable Long scheduleId) {
+        return scheduleService.readSchedule(scheduleId);
     }
 
     @GetMapping("")
@@ -35,12 +34,12 @@ public class ScheduleController {
     }
 
     @PutMapping("/{scheduleId}")
-    public ScheduleResponse updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleUpdateRequest requestDto) {
-        return scheduleService.updateSchedule(scheduleId, requestDto);
+    public ScheduleResponse updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleRequest requestDto, Long userId) {
+        return scheduleService.updateSchedule(scheduleId, requestDto, userId);
     }
 
     @DeleteMapping("/{scheduleId}")
-    public void deleteSchedule(@PathVariable Long scheduleId) {
-        scheduleService.deleteSchedule(scheduleId);
+    public void deleteSchedule(@PathVariable Long scheduleId, Long userId) {
+        scheduleService.deleteSchedule(scheduleId, userId);
     }
 }

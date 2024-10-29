@@ -1,5 +1,6 @@
 package com.eun0.schedulerdevelop.entity;
 
+import com.eun0.schedulerdevelop.dto.schedule.ScheduleRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,11 +25,6 @@ public class Schedule extends Timestamped {
     @Column(nullable = false, length = 200)
     private String content;
 
-    public Schedule(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -39,6 +35,15 @@ public class Schedule extends Timestamped {
     @OneToMany(mappedBy = "schedule")
     private List<ScheduleManager> scheduleManagers = new ArrayList<>();
 
+    public Schedule (String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
+
+    public static Schedule from(ScheduleRequest requestDto, User user) {
+        return new Schedule(requestDto.getTitle(), requestDto.getContent(), user);
+    }
 
     public void update(String title, String content) {
         this.title = title;
