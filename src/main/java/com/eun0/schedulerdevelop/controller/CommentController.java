@@ -1,8 +1,7 @@
 package com.eun0.schedulerdevelop.controller;
 
-import com.eun0.schedulerdevelop.dto.comment.CommentCreateRequest;
+import com.eun0.schedulerdevelop.dto.comment.CommentRequest;
 import com.eun0.schedulerdevelop.dto.comment.CommentResponse;
-import com.eun0.schedulerdevelop.dto.comment.CommentUpdateRequest;
 import com.eun0.schedulerdevelop.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,22 +16,22 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("")
-    public CommentResponse createComment(@PathVariable Long scheduleId, @RequestBody @Valid CommentCreateRequest requestDto) {
-        return commentService.createComment(requestDto);
+    public CommentResponse createComment(@RequestParam Long userId, @PathVariable Long scheduleId, @RequestBody @Valid CommentRequest requestDto) {
+        return commentService.createComment(userId, scheduleId, requestDto);
     }
 
     @GetMapping("")
-    public List<CommentResponse> readAllComments(@PathVariable Long scheduleId) {
-        return commentService.readAllComments();
+    public List<CommentResponse> readAllCommentsByScheduleId(@PathVariable Long scheduleId) {
+        return commentService.readAllCommentsByScheduleId(scheduleId);
     }
 
     @PutMapping("/{commentId}")
-    public CommentResponse updateComment(@PathVariable Long scheduleId, @PathVariable Long commentId, @RequestBody @Valid CommentUpdateRequest requestDto) {
-        return commentService.updateComment(commentId, requestDto);
+    public CommentResponse updateComment(@PathVariable Long scheduleId, @PathVariable Long commentId, @RequestBody @Valid CommentRequest requestDto) {
+        return commentService.updateComment(scheduleId, commentId, requestDto);
     }
 
     @DeleteMapping("/{commentId}")
     public void deleteComment(@PathVariable Long scheduleId, @PathVariable Long commentId) {
-        commentService.deleteComment(commentId);
+        commentService.deleteComment(scheduleId, commentId);
     }
 }
