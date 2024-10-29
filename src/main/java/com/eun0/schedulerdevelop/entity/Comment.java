@@ -1,5 +1,6 @@
 package com.eun0.schedulerdevelop.entity;
 
+import com.eun0.schedulerdevelop.dto.comment.CommentRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class Comment extends Timestamped {
     @Column(nullable = false, length = 20)
     private String content;
 
-        @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -26,9 +27,14 @@ public class Comment extends Timestamped {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    public Comment(String content, User user) {
+    public Comment(String content, User user, Schedule schedule) {
         this.content = content;
         this.user = user;
+        this.schedule = schedule;
+    }
+
+    public static Comment from(CommentRequest requestDto, User user, Schedule schedule) {
+        return new Comment(requestDto.getContent(), user, schedule);
     }
 
     public void update(String content) {
