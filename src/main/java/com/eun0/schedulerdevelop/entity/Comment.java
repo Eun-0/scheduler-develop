@@ -33,7 +33,7 @@ public class Comment extends Timestamped {
         this.schedule = schedule;
     }
 
-    public static Comment from(CommentRequest requestDto, User user, Schedule schedule) {
+    public static Comment of(CommentRequest requestDto, User user, Schedule schedule) {
         return new Comment(requestDto.getContent(), user, schedule);
     }
 

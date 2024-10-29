@@ -24,7 +24,7 @@ public class ScheduleService {
     public ScheduleResponse createSchedule(ScheduleRequest requestDto, Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("해당 유저가 DB에 존재하지 않습니다."));
 
-        Schedule savedSchedule = scheduleRepository.save(Schedule.from(requestDto, user));
+        Schedule savedSchedule = scheduleRepository.save(Schedule.of(requestDto, user));
 
         return ScheduleResponse.from(savedSchedule);
     }

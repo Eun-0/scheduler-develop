@@ -41,7 +41,7 @@ public class Schedule extends Timestamped {
         this.user = user;
     }
 
-    public static Schedule from(ScheduleRequest requestDto, User user) {
+    public static Schedule of(ScheduleRequest requestDto, User user) {
         return new Schedule(requestDto.getTitle(), requestDto.getContent(), user);
     }
 

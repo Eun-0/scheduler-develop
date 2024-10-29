@@ -26,7 +26,7 @@ public class CommentService {
         User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("해당 유저가 DB에 존재하지 않습니다."));
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(() -> new IllegalArgumentException("해당 일정이 DB에 존재하지 않습니다."));
 
-        Comment savedComment = commentRepository.save(Comment.from(requestDto, user, schedule));
+        Comment savedComment = commentRepository.save(Comment.of(requestDto, user, schedule));
 
         return CommentResponse.from(savedComment);
     }
