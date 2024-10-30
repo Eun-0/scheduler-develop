@@ -8,14 +8,15 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // JPA가 관리할 수 있는 Entity 클래스 지정
+@Entity
 @Getter
 @Setter
 @Table(name = "users")
 @NoArgsConstructor
 public class User extends Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto-increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(nullable = false, length = 5)

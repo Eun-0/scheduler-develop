@@ -11,6 +11,7 @@ import lombok.Setter;
 public class ScheduleManager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "schedule_manager_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

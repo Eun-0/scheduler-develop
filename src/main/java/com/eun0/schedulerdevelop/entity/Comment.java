@@ -6,14 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity // JPA가 관리할 수 있는 Entity 클래스 지정
+@Entity
 @Getter
 @Setter
 @Table(name = "comments")
 @NoArgsConstructor
 public class Comment extends Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto-increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
     private Long id;
 
     @Column(nullable = false, length = 20)

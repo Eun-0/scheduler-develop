@@ -9,14 +9,15 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // JPA가 관리할 수 있는 Entity 클래스 지정
+@Entity
 @Getter
 @Setter
-@Table(name = "schedules")   // 매핑할 테이블의 이름을 지정
+@Table(name = "schedules")
 @NoArgsConstructor
 public class Schedule extends Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto-increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "schedule_id")
     private Long id;
 
     @Column(nullable = false, length = 15)
