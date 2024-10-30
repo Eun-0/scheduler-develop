@@ -13,21 +13,21 @@
 
 ## 1. API 명세서
 ### 일정
-| 기능         | Method | URL                 | Request                   | Response   | Return                        |
-|------------|:------:|---------------------|---------------------------|------------|-------------------------------|
-| 일정 생성      |  POST  | /api/schedules      | RequestBody               | 생성된 일정 정보  | ScheduleResponse              |
-| 선택한 일정 조회  |  GET   | /api/schedules/{id} | PathVariable              | 선택한 일정 정보  | ScheduleResponse              |
-| 페이징된 일정 조회 |  GET   | /api/schedules      | RequestParam              | 페이징된 일정 정보 | Page <SchedulePagingResponse> |
-| 선택한 일정 수정  |  PUT   | /api/schedule/{id}  | PathVariable, RequestBody | 수정된 일정 정보  | ScheduleResponse              |
-| 선택한 일정 삭제  | DELETE | /api/schedules/{id} | PathVariable              | -          | -                             |
+| 기능         | Method | URL                         | Request                   | Response   | Return                        |
+|------------|:------:|-----------------------------|---------------------------|------------|-------------------------------|
+| 일정 생성      |  POST  | /api/schedules              | RequestBody               | 생성된 일정 정보  | ScheduleResponse              |
+| 선택한 일정 조회  |  GET   | /api/schedules/{scheduleId} | PathVariable              | 선택한 일정 정보  | ScheduleResponse              |
+| 페이징된 일정 조회 |  GET   | /api/schedules              | RequestParam              | 페이징된 일정 정보 | Page <SchedulePagingResponse> |
+| 선택한 일정 수정  |  PUT   | /api/schedule/{scheduleId}  | PathVariable, RequestBody | 수정된 일정 정보  | ScheduleResponse              |
+| 선택한 일정 삭제  | DELETE | /api/schedules/{scheduleId} | PathVariable              | -          | -                             |
 
 ### 댓글
-| 기능         | Method | URL                                       | Request                                 | Response  | Return                 |
-|:-----------|:------:|-------------------------------------------|-----------------------------------------|-----------|------------------------|
-| 댓글 생성      |  POST  | /api/schedules/{scheduleId}/comments      | PathVariable, RequestBody               | 생성된 댓글 정보 | CommentResponse        |
-| 전체 댓글 조회   |  GET   | /api/schedules/{scheduleId}/comments      | PathVariable                            | 모든 댓글 정보  | List <CommentResponse> |
-| 선택한 댓글 수정  |  PUT   | /api/schedules/{scheduleId}/comments/{id} | PathVariable, PathVariable, RequestBody | 수정된 댓글 정보 | CommentResponse        |
-| 선택한 댓글 삭제  | DELETE | /api/schedules/{scheduleId}/comments/{id} | PathVariable, PathVariable              | -         | -                      |
+| 기능               | Method | URL                                              | Request                                 | Response  | Return                 |
+|:-----------------|:------:|--------------------------------------------------|-----------------------------------------|-----------|------------------------|
+| 댓글 생성            |  POST  | /api/schedules/{scheduleId}/comments             | PathVariable, RequestBody               | 생성된 댓글 정보 | CommentResponse        |
+| 선택한 일정의 전체 댓글 조회 |  GET   | /api/schedules/{scheduleId}/comments             | PathVariable                            | 모든 댓글 정보  | List <CommentResponse> |
+| 선택한 댓글 수정        |  PUT   | /api/schedules/{scheduleId}/comments/{commentId} | PathVariable, PathVariable, RequestBody | 수정된 댓글 정보 | CommentResponse        |
+| 선택한 댓글 삭제        | DELETE | /api/schedules/{scheduleId}/comments/{commentId} | PathVariable, PathVariable              | -         | -                      |
 
 ### 유저
 | 기능           | Method | URL                 | Request                   | Response  | Return       |
@@ -40,4 +40,4 @@
 ---
 
 ## 2. ERD
-![ERD1](/img/ERD1.png)
+![ERD1](/img/ERD2.png)
