@@ -25,11 +25,6 @@ public class User extends Timestamped {
     @Column(nullable = false)
     private String email;
 
-    public User(String username, String email) {
-        this.username = username;
-        this.email = email;
-    }
-
     @OneToMany(mappedBy = "user")
     private List<Schedule> schedules = new ArrayList<>();
 
@@ -38,6 +33,11 @@ public class User extends Timestamped {
 
     @OneToMany(mappedBy = "user")
     private List<Comment> commentList = new ArrayList<>();
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
 
     public void update(String username, String email) {
         this.username = username;
