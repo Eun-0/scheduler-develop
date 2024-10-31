@@ -16,7 +16,7 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping("")
-    public ScheduleResponse createSchedule(@RequestBody @Valid ScheduleRequest requestDto, Long userId) {
+    public ScheduleResponse createSchedule(@RequestBody @Valid ScheduleRequest requestDto, @RequestParam Long userId) {
         return scheduleService.createSchedule(requestDto, userId);
     }
 
@@ -34,12 +34,16 @@ public class ScheduleController {
     }
 
     @PutMapping("/{scheduleId}")
-    public ScheduleResponse updateSchedule(@PathVariable Long scheduleId, @RequestBody @Valid ScheduleRequest requestDto, Long userId) {
+    public ScheduleResponse updateSchedule(
+            @PathVariable Long scheduleId,
+            @RequestBody @Valid ScheduleRequest requestDto,
+            @RequestParam Long userId
+    ) {
         return scheduleService.updateSchedule(scheduleId, requestDto, userId);
     }
 
     @DeleteMapping("/{scheduleId}")
-    public void deleteSchedule(@PathVariable Long scheduleId, Long userId) {
+    public void deleteSchedule(@PathVariable Long scheduleId, @RequestParam Long userId) {
         scheduleService.deleteSchedule(scheduleId, userId);
     }
 }
