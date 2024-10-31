@@ -7,6 +7,8 @@ import com.eun0.schedulerdevelop.service.ScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,34 +18,53 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping("")
-    public ScheduleResponse createSchedule(@RequestBody @Valid ScheduleRequest requestDto, @RequestParam Long userId) {
-        return scheduleService.createSchedule(requestDto, userId);
+    public ResponseEntity<ScheduleResponse> createSchedule(
+            @RequestBody @Valid ScheduleRequest requestDto,
+            @RequestParam Long userId) {
+        ScheduleResponse responseDto = scheduleService.createSchedule(requestDto, userId);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(responseDto);
     }
 
     @GetMapping("/{scheduleId}")
-    public ScheduleResponse readSchedule(@PathVariable Long scheduleId) {
-        return scheduleService.readSchedule(scheduleId);
+    public ResponseEntity<ScheduleResponse> readSchedule(
+            @PathVariable Long scheduleId
+    ) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(scheduleService.readSchedule(scheduleId));
     }
 
     @GetMapping("")
-    public Page<SchedulePagingResponse> readSchedulesAsPageSize(
+    public ResponseEntity<Page<SchedulePagingResponse>> readSchedulesAsPageSize(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size
     ) {
-        return scheduleService.readSchedulesAsPageSize(page, size);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(scheduleService.readSchedulesAsPageSize(page, size));
     }
 
     @PutMapping("/{scheduleId}")
-    public ScheduleResponse updateSchedule(
+    public ResponseEntity<ScheduleResponse> updateSchedule(
             @PathVariable Long scheduleId,
             @RequestBody @Valid ScheduleRequest requestDto,
             @RequestParam Long userId
     ) {
-        return scheduleService.updateSchedule(scheduleId, requestDto, userId);
+        return ResponseEntity
+                .status(HttpStatus.RESET_CONTENT)
+                .body(scheduleService.updateSchedule(scheduleId, requestDto, userId));
     }
 
     @DeleteMapping("/{scheduleId}")
-    public void deleteSchedule(@PathVariable Long scheduleId, @RequestParam Long userId) {
+    public ResponseEntity<Void> deleteSchedule(
+            @PathVariable Long scheduleId,
+            @RequestParam Long userId
+    ) {
         scheduleService.deleteSchedule(scheduleId, userId);
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 }
