@@ -2,9 +2,11 @@ package com.eun0.schedulerdevelop.dto.user;
 
 import com.eun0.schedulerdevelop.entity.User;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 @AllArgsConstructor
 public class UserResponse {
     private Long id;

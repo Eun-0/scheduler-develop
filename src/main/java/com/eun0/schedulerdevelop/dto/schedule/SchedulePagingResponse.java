@@ -2,9 +2,11 @@ package com.eun0.schedulerdevelop.dto.schedule;
 
 import com.eun0.schedulerdevelop.entity.Schedule;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 @AllArgsConstructor
 public class SchedulePagingResponse {
     private String title;
