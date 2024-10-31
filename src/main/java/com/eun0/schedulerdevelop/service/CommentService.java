@@ -17,9 +17,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CommentService {
-    UserRepository userRepository;
-    ScheduleRepository scheduleRepository;
-    CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final ScheduleRepository scheduleRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public CommentResponse createComment(Long userId, Long scheduleId, CommentRequest requestDto) {

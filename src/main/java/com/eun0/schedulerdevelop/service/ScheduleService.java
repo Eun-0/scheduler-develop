@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ScheduleService {
-    UserRepository userRepository;
-    ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
+    private final ScheduleRepository scheduleRepository;
 
     @Transactional
     public ScheduleResponse createSchedule(ScheduleRequest requestDto, Long userId) {
