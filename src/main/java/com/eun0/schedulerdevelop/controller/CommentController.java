@@ -23,37 +23,43 @@ public class CommentController {
             @PathVariable Long scheduleId,
             @RequestBody @Valid CommentRequest requestDto
     ) {
+        CommentResponse response = commentService.createComment(userId, scheduleId, requestDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(commentService.createComment(userId, scheduleId, requestDto));
+                .body(response);
     }
 
     @GetMapping("")
     public  ResponseEntity<List<CommentResponse>> readAllCommentsByScheduleId(
             @PathVariable Long scheduleId
     ) {
+        List<CommentResponse> responses = commentService.readAllCommentsByScheduleId(scheduleId);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(commentService.readAllCommentsByScheduleId(scheduleId));
+                .body(responses);
     }
 
     @PutMapping("/{commentId}")
     public  ResponseEntity<CommentResponse> updateComment(
             @PathVariable Long scheduleId,
             @PathVariable Long commentId,
-            @RequestBody @Valid CommentRequest requestDto
+            @RequestBody @Valid CommentRequest requestDto,
+            @RequestParam Long userId
     ) {
+        CommentResponse response = commentService.updateComment(scheduleId, commentId, requestDto, userId);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(commentService.updateComment(scheduleId, commentId, requestDto));
+                .body(response);
     }
 
     @DeleteMapping("/{commentId}")
     public  ResponseEntity<Void> deleteComment(
             @PathVariable Long scheduleId,
-            @PathVariable Long commentId
+            @PathVariable Long commentId,
+            @RequestParam Long userId
     ) {
-        commentService.deleteComment(scheduleId, commentId);
+
+        commentService.deleteComment(scheduleId, commentId, userId);
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .build();

@@ -20,18 +20,20 @@ public class UserController {
     public ResponseEntity<UserResponse> signup(
             @RequestBody @Valid SignupRequest requestDto
     ) {
+        UserResponse response = userService.signup(requestDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(userService.signup(requestDto));
+                .body(response);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponse> findUserById(
             @PathVariable("userId") Long id
     ) {
+        UserResponse response = userService.findUserById(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(userService.findUserById(id));
+                .body(response);
     }
 
     @PutMapping("/{userId}")
@@ -39,9 +41,10 @@ public class UserController {
             @PathVariable("userId") Long id,
             @RequestBody @Valid UserUpdateRequest requestDto
     ) {
+        UserResponse response = userService.updateUser(id, requestDto);
         return ResponseEntity
                 .status(HttpStatus.RESET_CONTENT)
-                .body(userService.updateUser(id, requestDto));
+                .body(response);
     }
 
     @DeleteMapping("/{userId}")

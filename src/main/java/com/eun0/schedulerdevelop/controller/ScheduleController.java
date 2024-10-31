@@ -21,19 +21,20 @@ public class ScheduleController {
     public ResponseEntity<ScheduleResponse> createSchedule(
             @RequestBody @Valid ScheduleRequest requestDto,
             @RequestParam Long userId) {
-        ScheduleResponse responseDto = scheduleService.createSchedule(requestDto, userId);
+        ScheduleResponse response = scheduleService.createSchedule(requestDto, userId);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(responseDto);
+                .body(response);
     }
 
     @GetMapping("/{scheduleId}")
     public ResponseEntity<ScheduleResponse> readSchedule(
             @PathVariable Long scheduleId
     ) {
+        ScheduleResponse response = scheduleService.readSchedule(scheduleId);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(scheduleService.readSchedule(scheduleId));
+                .body(response);
     }
 
     @GetMapping("")
@@ -41,9 +42,10 @@ public class ScheduleController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size
     ) {
+        Page<SchedulePagingResponse> responses = scheduleService.readSchedulesAsPageSize(page, size);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(scheduleService.readSchedulesAsPageSize(page, size));
+                .body(responses);
     }
 
     @PutMapping("/{scheduleId}")
@@ -52,9 +54,10 @@ public class ScheduleController {
             @RequestBody @Valid ScheduleRequest requestDto,
             @RequestParam Long userId
     ) {
+        ScheduleResponse response = scheduleService.updateSchedule(scheduleId, requestDto, userId);
         return ResponseEntity
                 .status(HttpStatus.RESET_CONTENT)
-                .body(scheduleService.updateSchedule(scheduleId, requestDto, userId));
+                .body(response);
     }
 
     @DeleteMapping("/{scheduleId}")

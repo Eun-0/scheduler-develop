@@ -4,6 +4,8 @@ import com.eun0.schedulerdevelop.dto.user.SignupRequest;
 import com.eun0.schedulerdevelop.dto.user.UserResponse;
 import com.eun0.schedulerdevelop.dto.user.UserUpdateRequest;
 import com.eun0.schedulerdevelop.entity.User;
+import com.eun0.schedulerdevelop.exception.ApplicationException;
+import com.eun0.schedulerdevelop.exception.ErrorCode;
 import com.eun0.schedulerdevelop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,14 +27,16 @@ public class UserService {
 
     @Transactional
     public UserResponse findUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 DB에 존재하지 않습니다."));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ApplicationException(ErrorCode.USER_NOT_FOUND));
 
         return UserResponse.from(user);
     }
 
     @Transactional
     public UserResponse updateUser(Long id, UserUpdateRequest requestDto) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 DB에 존재하지 않습니다."));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ApplicationException(ErrorCode.USER_NOT_FOUND));
 
         user.update(requestDto.getUsername(), requestDto.getEmail());
 
@@ -41,7 +45,8 @@ public class UserService {
 
     @Transactional
     public void deleteUser(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 DB에 존재하지 않습니다."));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ApplicationException(ErrorCode.USER_NOT_FOUND));
 
         userRepository.delete(user);
     }
